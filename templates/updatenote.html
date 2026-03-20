@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>Edit Note</h3>
+
+<form method="post">
+
+<label>Title</label><br>
+<input type="text" name="title" value="{{note[2]}}" required>
+
+<br><br>
+
+<label>Content</label><br>
+<textarea name="content" rows="5" cols="40" required>{{note[3]}}</textarea>
+
+<br><br>
+
+<button class="btn">Update</button>
+<a class="btn" href="/viewnotes">Cancel</a>
+
+</form>
+
+{% endblock %}

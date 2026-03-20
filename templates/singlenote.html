@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="note-card">
+<h2>{{note[2]}}</h2>
+
+<p>{{note[3]}}</p>
+<!-- 
+<h2>{{note[2]}}</h2>
+<p>{{note[3]}}</p> -->
+<p><b>Date:</b> {{note[4].strftime("%Y-%m-%d %H:%M")}}</p>
+
+<br>
+
+<a class="btn" href="/viewnotes">Back</a>
+
+</div>
+
+{% endblock %}

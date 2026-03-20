@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Dashboard</h2>
+
+<div class="dashboard-cards">
+
+    <div class="dash-card">
+        <h3>➕ Add Note</h3>
+        <p>Create a new note and save your ideas.</p>
+        <a class="btn" href="/addnote">Open</a>
+    </div>
+
+    <div class="dash-card">
+        <h3>📄 View Notes</h3>
+        <p>See all your saved notes here.</p>
+        <a class="btn" href="/viewnotes">Open</a>
+    </div>
+
+    <div class="dash-card">
+        <h3>👤 Profile</h3>
+        <p>View your account details.</p>
+        <a class="btn" href="/profile">Open</a>
+    </div>
+
+</div>
+
+{% endblock %}

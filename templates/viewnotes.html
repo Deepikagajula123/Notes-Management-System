@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Your Notes</h2>
+
+<a class="btn" href="/addnote">➕ Add New Note</a>
+
+<br><br>
+
+<input type="text" id="searchInput" placeholder="🔍 Search notes..." class="search-box">
+
+<br><br>
+
+<div class="notes-grid">
+
+{% for note in notes %}
+
+<div class="note-card" data-title="{{note[2]}}" data-content="{{note[3]}}">
+
+
+<h3>{{note[2]}}</h3>
+
+<p>{{note[3][:80]}}...</p>
+
+<p><small>{{note[4].strftime("%Y-%m-%d %H:%M")}}</small></p>
+
+<div class="note-actions">
+    <a class="pin-btn" href="/pin/{{note[0]}}">
+    {% if note[5] == 1 %}
+    📌
+    {% else %}
+    📍
+    {% endif %}
+    </a>    
+
+    <a class="btn btn-view" href="/note/{{note[0]}}">👁View</a>
+
+    <a class="btn btn-edit" href="/update/{{note[0]}}">✏Edit</a>
+
+    <a class="btn btn-delete" href="/delete/{{note[0]}}">🗑 Delete</a>
+
+    <!-- PIN BUTTON -->
+    
+
+</div>
+
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<script>
+
+document.getElementById("searchInput").addEventListener("keyup", function(){
+
+let search = this.value.toLowerCase();
+
+let notes = document.querySelectorAll(".note-card");
+
+notes.forEach(function(note){
+
+let title = note.dataset.title.toLowerCase();
+let content = note.dataset.content.toLowerCase();
+
+if(title.includes(search) || content.includes(search)){
+note.style.display = "block";
+}else{
+note.style.display = "none";
+}
+
+});
+
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="auth-container">
+
+<div class="auth-card">
+
+<h2 style="text-align:center;">Profile</h2>
+
+<div class="profile-pic">
+
+{% if user[2] %}
+<img src="{{ url_for('static', filename='uploads/' + user[2]) }}">
+{% else %}
+<img src="{{ url_for('static', filename='default.png') }}">
+{% endif %}
+
+</div>
+
+<p><b>Username:</b> {{user[0]}}</p>
+<p><b>Email:</b> {{user[1]}}</p>
+
+<br>
+
+<form method="post" enctype="multipart/form-data">
+
+<input type="file" name="photo" required>
+
+<br><br>
+
+<button class="btn">Upload Photo</button>
+
+</form>
+
+<br>
+
+<a class="btn" href="/dashboard">Back</a>
+
+</div>
+
+</div>
+
+{% endblock %}

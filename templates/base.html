@@ -2,91 +2,58 @@
 <html>
 <head>
 <title>Notes App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-    .search-box{
-width:300px;
-padding:10px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-.note-actions{
-display:flex;
-align-items:center;
-gap:6px;
-margin-top:12px;
-flex-wrap:nowrap;
-justify-content:flex-start;
+    html{
+    font-size: 16px;
 }
 
-.pin-btn{
-font-size:20px;
-text-decoration:none;
-margin-right:5px;
-}
-
-.btn-view{
-background:#17a2b8;
-}
-
-.btn-edit{
-background:#28a745;
-}
-
-.btn-delete{
-background:#dc3545;
-}
-.pin-btn{
-    text-decoration:none;
-    font-size:18px;
-    color:#ff9800;
-    margin-right:10px;
-}
-
-.pin-btn:hover{
-    color:#e68900;
-}
 body{
-    font-family:Arial;
+    font-family: Arial;
     margin:0;
+    padding:0;
     background:#f4f6f9;
     display:flex;
     flex-direction:column;
     min-height:100vh;
+    font-size: 1rem;
 }
 
 /* NAVBAR */
-
+*{
+    box-sizing: border-box;
+}
 .navbar{
     background:#222;
-    padding:15px;
+    padding:10px 15px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .navbar a{
     color:white;
     text-decoration:none;
-    margin-right:20px;
-    font-size:18px;
-}
-
-.navbar a:hover{
-    color:#00d9ff;
+    margin:5px 8px;
+    font-size:0.85rem;
 }
 
 .logo{
     color:white;
-    font-size:22px;
+    font-size:1.3rem;
     font-weight:bold;
 }
 
 /* CONTENT */
 
 .container{
-    flex:1;
-    padding:30px;
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    padding:20px;
 }
 
 /* BUTTON */
@@ -94,32 +61,127 @@ body{
 .btn{
     background:linear-gradient(45deg,#007bff,#00c6ff);
     color:white;
-    padding:6px 12px;
     border:none;
-    border-radius:5px;
+    border-radius:6px;
     cursor:pointer;
     text-decoration:none;
-    font-size: 14px;
+    font-size:1.1rem;
+    padding:12px 20px;
 }
 
-.btn:hover{
-    opacity:0.9;
-}
-
-/* DASHBOARD CARDS */
+/* DASHBOARD */
 
 .dashboard-cards{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-    margin-top:30px;
+    gap:20px;
 }
 
+/* NOTES */
+
+.notes-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    font-size: 1.05rem;
+    padding: 20px;
+}
+.note-content{
+    max-height:100px;
+    overflow-y:auto;
+    margin-bottom:10px;
+}
+.note-content::-webkit-scrollbar{
+    width:5px;
+}
+
+.note-content::-webkit-scrollbar-thumb{
+    background:#888;
+    border-radius:10px;
+}
+.note-card{
+    background:white;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+    max-height:250px;     /* 🔥 limit height */
+    overflow-y:auto; 
+}
+
+/* ACTION BUTTONS */
+
+.note-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.note-actions .btn{
+    font-size:0.8rem;
+    padding:6px 10px;
+}
+
+/* PROFILE */
+
+.profile-pic img{
+    width:120px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+}
+.profile-card{
+    text-align:center;
+}
+
+.profile-pic{
+    display:flex;
+    justify-content:center;
+    margin-bottom:15px;
+}
+
+/* AUTH */
+.profile-form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+/* ABOUT & CONTACT TEXT SIZE */
+
+.auth-card p{
+    font-size:0.9rem;   /* 🔽 smaller text */
+    line-height:1.5;
+}
+
+.auth-card h2{
+    font-size:1.3rem;   /* slightly smaller heading */
+}
+/* CENTER BUTTON */
+/* CONTACT PAGE SMALL TEXT */
+
+.auth-card label{
+    font-size:0.9rem;
+}
+
+.auth-card input,
+.auth-card textarea{
+    font-size:0.9rem;
+}
+
+.auth-card button{
+    font-size:0.9rem;
+}
+.center-btn{
+    display:flex;
+    justify-content:center;
+}
+.about-card p{
+    font-size:0.85rem;
+}
 .dash-card{
     background:white;
-    padding:25px;
+    padding:18px;
     border-radius:12px;
-    box-shadow:0px 5px 15px rgba(0,0,0,0.1);
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
     text-align:center;
     transition:0.3s;
 }
@@ -127,67 +189,44 @@ body{
 .dash-card:hover{
     transform:translateY(-5px);
 }
-
-/* NOTES */
-
-.notes-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    gap:20px;
-}
-
-.note-card{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0px 3px 10px rgba(0,0,0,0.1);
-    transition:0.3s;
-    position:relative;
-    display: flex;
-    flex-direction:column;
-    justify-content:space-between;
-}
-
-.note-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0px 8px 20px rgba(0,0,0,0.15);
-}
-
-.note-card h3{
-    margin-top:0;
-}
-
-.note-card p{
-    color:#555;
-}
-
-.note-card .btn{
-    margin-right:5px;
-    margin-top:10px;
-}
-
-
-.note-actions .btn{
-padding:4px 8px;
-font-size:12px;
-}
-.btn-pin{
-    background:#ff9800;
-}
-/* PROFILE PICTURE */
-
-.profile-pic{
+.auth-container{
     display:flex;
     justify-content:center;
-    margin-bottom:20px;
+    align-items:center;
+    padding:20px;
 }
 
-.profile-pic img{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
-    border:4px solid #00c6ff;
+.auth-card{
+    width:100%;
+    max-width:400px;
+    padding:30px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+}
+
+/* INPUT */
+
+.auth-card input,
+textarea{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    margin-bottom:15px;
+    border-radius:6px;
+    font-size: 1rem;
+    padding: 12px;
+    border:1px solid #ccc;
+}
+
+/* SEARCH */
+
+.search-box{
+    width:100%;
+    max-width:400px;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
 }
 
 /* FOOTER */
@@ -196,40 +235,153 @@ font-size:12px;
     background:#222;
     color:white;
     text-align:center;
-    padding:10px;
+    padding:6px;
+    font-size: 0.85rem;
+    margin-top:auto;
 }
-/* AUTH CARDS (Login & Register) */
 
-.auth-container{
+/* 📱 MOBILE */
+
+@media (max-width:768px){
+    html{
+        font-size: 16px;
+    }
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:60px;
+        right:0;
+        width:100%;
+        background:#222;
+        flex-direction:column;
+        text-align:left;
+    }
+
+    .nav-links a{
+        padding:12px 20px;
+        border-top:1px solid #444;
+        width:100%;
+    }
+    .navbar{
+        padding:10px;
+    }
+    .nav-links.active{
+        display:flex;
+    }
+    .navbar a{
+        font-size:1rem;   /* slightly bigger for mobile readability */
+    }
+}
+
+/* 💻 TABLET */
+
+@media (min-width:769px) and (max-width:1024px){
+
+    html{
+        font-size:17px;
+    }
+
+    .container{
+        padding:25px;
+    }
+
+}
+
+/* 🖥️ LAPTOP / DESKTOP */
+
+@media (min-width:1025px){
+
+    html{
+        font-size:18px;
+    }
+    
+
+    /* width:100%;            /* 🔥 important */
+    /* box-sizing:border-box; 🔥 prevents overflow */ 
+
+
+    .container{
+        max-width:1300px;
+    }
+
+    .logo{
+        font-size:1.3rem;
+    }
+    .navbar{
+        padding:8px 20px;
+    }
+    .note-card{
+        padding:15px;
+        font-size:0.95rem;
+    }
+
+    .dash-card{
+        padding:18px;
+        font-size:0.95rem;
+    }
+
+
+    .navbar a{
+        font-size:0.9rem;
+    }
+    .btn{
+        padding:8px 14px;
+        font-size:0.9rem;
+    }
+
+}
+/* MENU BUTTON */
+
+.menu-toggle{
+    display:none;
+    font-size:1.4rem;
+    color:white;
+    cursor:pointer;
+}
+
+.nav-right{
     display:flex;
-    justify-content:center;
     align-items:center;
-    margin-top:40px;
+    gap:20px;
 }
 
-.auth-card{
-    background:white;
-    padding:40px;
-    border-radius:12px;
-    box-shadow:0px 5px 15px rgba(0,0,0,0.1);
-    width:350px;
+
+/* NAV LINKS */
+
+.nav-links{
+    display:flex;
+    gap:15px;
 }
 
-.auth-card h2{
-    text-align:center;
-    margin-bottom:20px;
-}
+/* 📱 MOBILE NAVBAR */
 
-.auth-card input{
-    width:100%;
-    padding:10px;
-    margin-bottom:15px;
-    border:1px solid #ccc;
-    border-radius:5px;
-}
+@media (max-width:768px){
 
-.auth-card button{
-    width:100%;
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav-links{
+        display:none;
+        width:100%;
+        flex-direction:column;
+        background:#222;
+        margin-top:10px;
+    }
+
+    .nav-links a{
+        padding:12px;
+        border-top:1px solid #444;
+        width:100%;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
 }
 </style>
 </head>
@@ -237,29 +389,39 @@ font-size:12px;
 <body>
 
 <!-- HEADER -->
-
 <div class="navbar">
-<div class="logo">Notes App</div>
 
-<div>
-{% if 'user' in session %}
-<a href="/about">About</a>
-<a href="contact">Contact</a>
-<a href="/dashboard">Dashboard</a>
-<a href="/addnote">Add Note</a>
-<a href="/viewnotes">View Notes</a>
-<a href="/logout">Logout</a>
-<a href="profile">Profile</a>
-{% else %}
-<a href="/">Login</a>
-<a href="/register">Register</a>
-<a href="/about">About</a>
-<a href="contact">Contact</a>
-{% endif %}
+    <div class="logo">Notes App</div>
+
+    <!-- RIGHT SIDE -->
+    <div class="nav-right">
+
+        <!-- MENU BUTTON -->
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- LINKS -->
+        <div class="nav-links" id="navLinks">
+        {% if 'user' in session %}
+            <a href="/about" onclick="toggleMenu()">About</a>
+            <a href="/contact" onclick="toggleMenu()">Contact</a>
+            <a href="/dashboard" onclick="toggleMenu()">Dashboard</a>
+            <a href="/addnote" onclick="toggleMenu()">Add Note</a>
+            <a href="/viewnotes" onclick="toggleMenu()">View Notes</a>
+            <a href="/logout" onclick="toggleMenu()">Logout</a>
+            <a href="/profile" onclick="toggleMenu()">Profile</a>
+        {% else %}
+            <a href="/" onclick="toggleMenu()">Login</a>
+            <a href="/register" onclick="toggleMenu()">Register</a>
+            <a href="/about" onclick="toggleMenu()">About</a>
+            <a href="/contact" onclick="toggleMenu()">Contact</a>
+        {% endif %}
+        </div>
+
+    </div>
+
 </div>
-
-</div>
-
 <!-- CONTENT -->
 
 <div class="container">
@@ -274,6 +436,10 @@ font-size:12px;
 <div class="footer">
 <p>Notes Management System © 2026</p>
 </div>
-
+<script>
+function toggleMenu(){
+    document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
 </body>
 </html>

@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<style>
+    .profile-pic img{
+    width:100%;
+    max-width:120px;
+}
+</style>
 <div class="auth-container">
 
 <div class="auth-card">
@@ -34,11 +39,11 @@
 </form>
 
 <br>
-
+<div class="center-btn"></div>
 <a class="btn" href="/dashboard">Back</a>
 
 </div>
-
+</div>
 </div>
 
 {% endblock %}

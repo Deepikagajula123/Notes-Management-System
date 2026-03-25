@@ -268,7 +268,7 @@ def get_db():
 
     # database file path
     db_path = os.path.join(base_dir, "database.db")
-
+    print("DB PATH:", db_path)
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     return conn
@@ -289,8 +289,8 @@ app.config['MAIL_PASSWORD'] = 'ecqo soxd ihmh mqkt'
 mail = Mail(app)
 
 # Upload Folder
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app.config['UPLOAD_FOLDER'] = os.path.join(BASE_DIR, 'static/uploads')
 # ================= DATABASE =================
 
 
@@ -411,10 +411,14 @@ def viewnotes():
     conn = get_db()
     cursor = conn.cursor()
 
-    cursor.execute(
-        "SELECT * FROM notes WHERE user_id=? ORDER BY pinned DESC, created_at DESC",
-        (session['user'],)
-    )
+    
+    cursor.execute("""
+    SELECT id, user_id, title, content,
+    datetime(created_at) as created_at
+    FROM notes
+    WHERE user_id=?
+    ORDER BY pinned DESC, created_at DESC
+    """, (session['user'],))
 
     notes = cursor.fetchall()
     conn.close()
@@ -604,7 +608,7 @@ We will get back to you soon.
 
 
 # ================= RUN =================
-
+init_db() 
 if __name__ == "__main__":
-    init_db()   # 🔥 VERY IMPORTANT
+      # 🔥 VERY IMPORTANT
     app.run(debug=True)

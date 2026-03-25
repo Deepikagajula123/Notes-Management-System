@@ -255,8 +255,6 @@
 
 
 
-
-
 from flask import Flask, render_template, request, redirect, session
 import sqlite3
 import os
@@ -292,6 +290,7 @@ mail = Mail(app)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 app.config['UPLOAD_FOLDER'] = os.path.join(BASE_DIR, 'static/uploads')
 # ================= DATABASE =================
+
 
 
 def init_db():
@@ -576,7 +575,7 @@ def contact():
         admin_msg = Message(
             subject="New Contact Message",
             sender=app.config['MAIL_USERNAME'],
-            recipients=['yourgmail@gmail.com']
+            recipients=['deepikagajula6@gmail.com']
         )
 
         admin_msg.body = f"""

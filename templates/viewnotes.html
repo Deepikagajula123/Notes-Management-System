@@ -26,7 +26,7 @@
 <p><small>{{note[4][:16]}}</small></p>
 
 <div class="note-actions">
-    <a class="pin-btn" href="/pin/{{note[0]}}">
+    <a class="pin-btn" href="/pin/{{note['id']}}">
     {% if note[5] == 1 %}
     📌
     {% else %}
@@ -34,11 +34,11 @@
     {% endif %}
     </a>    
 
-    <a class="btn btn-view" href="/note/{{note[0]}}">👁View</a>
+    <a class="btn btn-view" href="/note/{{note['id']}}">👁View</a>
 
-    <a class="btn btn-edit" href="/update/{{note[0]}}">✏Edit</a>
+    <a class="btn btn-edit" href="/update/{{note['id']}}">✏Edit</a>
 
-    <a class="btn btn-delete" href="/delete/{{note[0]}}">🗑 Delete</a>
+    <a class="btn btn-delete" href="/delete/{{note['id']}}">🗑 Delete</a>
 
     <!-- PIN BUTTON -->
     

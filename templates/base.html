@@ -107,9 +107,28 @@ body{
     max-height:250px;     /* 🔥 limit height */
     overflow-y:auto; 
 }
+.notes-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 20px;
+    padding: 20px;
+}
+@media (max-width: 900px) {
+    .notes-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
+@media (max-width: 500px) {
+    .notes-container {
+        grid-template-columns: 1fr;
+    }
+}
 /* ACTION BUTTONS */
-
+.note-card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
 .note-actions{
     display:flex;
     flex-wrap:wrap;

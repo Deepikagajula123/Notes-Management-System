@@ -17,7 +17,7 @@ app.secret_key = "supersecretkey"
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 # Database connection
 db = mysql.connector.connect(
-    host="localhost",
+    host="Deepika123.mysql.pythonanywhere-services.com",
     user="root",
     password="root",
     database="notes",

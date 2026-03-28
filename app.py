@@ -412,7 +412,7 @@ def viewnotes():
 
     
     cursor.execute("""
-    SELECT id, user_id, title, content,
+    SELECT id, user_id, title, content,pinned,
     datetime(created_at) as created_at
     FROM notes
     WHERE user_id=?

@@ -19,11 +19,11 @@
 <div class="note-card" data-title="{{note[2]}}" data-content="{{note[3]}}">
 
 
-<h3>{{note[2]}}</h3>
+<h3>{{note['title']}}</h3>
 
-<p>{{note[3]}}...</p>
+<p>{{note[content]}}...</p>
 
-<p><small>{{note[4][:16]}}</small></p>
+<p><small>{{note['created_at'][:16]}}</small></p>
 
 <div class="note-actions">
     <a class="pin-btn" href="/pin/{{note['id']}}">

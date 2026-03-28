@@ -20,14 +20,14 @@
 
 
 <h3>{{note['title']}}</h3>
-
-<p>{{note[content]}}...</p>
+<div class="note-content">
+<p>{{note['content']}}...</p></div>
 
 <p><small>{{note['created_at'][:16]}}</small></p>
 
 <div class="note-actions">
     <a class="pin-btn" href="/pin/{{note['id']}}">
-    {% if note[5] == 1 %}
+    {% if note['pinned'] == 1 %}
     📌
     {% else %}
     📍

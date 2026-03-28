@@ -54,10 +54,20 @@ body{
     max-width:1400px;
     margin:auto;
     padding:20px;
+    flex: 1;
 }
 
 /* BUTTON */
-
+.center-btn{
+    display: flex;
+    justify-content: center;
+}
+.login-btn{
+    display: flex;
+    justify-content: center;
+    width:200px !important;
+    
+}
 .btn{
     background:linear-gradient(45deg,#007bff,#00c6ff);
     color:white;
@@ -67,6 +77,8 @@ body{
     text-decoration:none;
     font-size:1.1rem;
     padding:12px 20px;
+    width:100px;
+    
 }
 
 /* DASHBOARD */
@@ -87,10 +99,16 @@ body{
     padding: 20px;
 }
 .note-content{
-    max-height:100px;
-    overflow-y:auto;
-    margin-bottom:10px;
+ 
+    flex:1;                /* takes available space */
+    overflow-y:auto;       /* scroll only here */
+    margin:8px 0;
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
 }
+
 .note-content::-webkit-scrollbar{
     width:5px;
 }
@@ -99,20 +117,30 @@ body{
     background:#888;
     border-radius:10px;
 }
+.note-card:hover{
+    transform: translateY(-5px);
+    box-shadow:0px 8px 20px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
 .note-card{
+    border:1px solid #eee;
     background:white;
-    padding:18px;
+    padding:15px;
     border-radius:12px;
     box-shadow:0px 4px 12px rgba(0,0,0,0.1);
-    max-height:250px;     /* 🔥 limit height */
-    overflow-y:auto; 
+
+    display:flex;
+    flex-direction:column;
+    overflow: visible;
+    height:260px;          /* fixed height */
+         /* 🔥 prevents overflow */
 }
-.notes-container {
+/* .notes-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
-    gap: 20px;
-    padding: 20px;
-}
+    /* gap: 20px;
+    padding: 20px;  */
+     /* } */ 
 @media (max-width: 900px) {
     .notes-container {
         grid-template-columns: repeat(2, 1fr);
@@ -131,13 +159,19 @@ body{
 }
 .note-actions{
     display:flex;
-    flex-wrap:wrap;
-    gap:8px;
+    flex-wrap: wrap;        /* 🔥 IMPORTANT */
+    gap:5px;
+    align-items:center;
+    justify-content: space-between;
 }
-
+.note-actions a {
+    white-space: nowrap;
+}
 .note-actions .btn{
-    font-size:0.8rem;
-    padding:6px 10px;
+    flex:1 1 45%;          /* 2 buttons per row */
+    text-align:center;
+    font-size:0.75rem;
+    padding:5px;
 }
 
 /* PROFILE */
@@ -249,7 +283,23 @@ textarea{
 }
 
 /* FOOTER */
+.flash{
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:6px;
+    text-align:center;
+    font-size:0.9rem;
+}
 
+.flash.success{
+    background:#d4edda;
+    color:#155724;
+}
+
+.flash.danger{
+    background:#f8d7da;
+    color:#721c24;
+}
 .footer{
     background:#222;
     color:white;
@@ -423,8 +473,8 @@ textarea{
         <!-- LINKS -->
         <div class="nav-links" id="navLinks">
         {% if 'user' in session %}
-            <a href="/about" onclick="toggleMenu()">About</a>
-            <a href="/contact" onclick="toggleMenu()">Contact</a>
+            
+            <!-- <a href="/contact" onclick="toggleMenu()">Contact</a> -->
             <a href="/dashboard" onclick="toggleMenu()">Dashboard</a>
             <a href="/addnote" onclick="toggleMenu()">Add Note</a>
             <a href="/viewnotes" onclick="toggleMenu()">View Notes</a>
@@ -434,7 +484,7 @@ textarea{
             <a href="/" onclick="toggleMenu()">Login</a>
             <a href="/register" onclick="toggleMenu()">Register</a>
             <a href="/about" onclick="toggleMenu()">About</a>
-            <a href="/contact" onclick="toggleMenu()">Contact</a>
+            <!-- <a href="/contact" onclick="toggleMenu()">Contact</a> -->
         {% endif %}
         </div>
 
@@ -444,6 +494,15 @@ textarea{
 <!-- CONTENT -->
 
 <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
 {% block content %}
 {% endblock %}

@@ -17,8 +17,8 @@
 
 <label>Password</label>
 <input type="password" name="password" required>
-
-<button class="btn">Register</button>
+<div class="center-btn">
+<button class="btn">Register</button></div>
 
 </form>
 
@@ -27,3 +27,9 @@
 </div>
 
 {% endblock %}
+
+{% if error %}
+<div class="alert alert-danger text-center">
+  {{ error }}
+</div>
+{% endif %}
